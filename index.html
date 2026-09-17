@@ -540,6 +540,25 @@ html, body {
     <span class="icon-label">Store</span>
   </a>
 
+
+  <a class="desktop-icon icon-godseye" href="#" role="button" tabindex="0"
+     onclick="toggleWindow('win-godseye'); return false;" aria-label="Open God's-Eye View">
+    <span class="icon-glyph" aria-hidden="true">&#128065;</span>
+    <span class="icon-label">God's Eye</span>
+  </a>
+
+  <a class="desktop-icon icon-outer-meeting" href="#" role="button" tabindex="0"
+     onclick="toggleWindow('win-outer-meeting'); return false;" aria-label="Open Outer Sister Meeting Room">
+    <span class="icon-glyph" aria-hidden="true">&#127760;</span>
+    <span class="icon-label">Outer Sister</span>
+  </a>
+
+  <a class="desktop-icon icon-inner-meeting" href="#" role="button" tabindex="0"
+     onclick="toggleWindow('win-inner-meeting'); return false;" aria-label="Open Inner Sister Meeting Room">
+    <span class="icon-glyph" aria-hidden="true">&#10024;</span>
+    <span class="icon-label">Inner Sister</span>
+  </a>
+
 </nav>
 
 <!-- ============================================================
@@ -976,6 +995,91 @@ html, body {
   </div>
 </section>
 
+
+<!-- ============================================================
+     WINDOW: GOD'S-EYE VIEW
+     ============================================================ -->
+<section id="win-godseye" class="os-window" role="dialog" aria-label="God's-Eye View"
+         style="top:80px;left:60px;width:720px;height:520px;">
+  <div class="win-titlebar" onmousedown="startDrag(event,'win-godseye')">
+    <div class="win-titlebar-left">
+      <span class="win-title-icon">&#128065;</span>
+      <span class="win-title-text">God's-Eye View</span>
+    </div>
+    <div class="win-controls">
+      <span class="win-ctrl minimize" onclick="minimizeWindow('win-godseye')" title="Minimize">&#8722;</span>
+      <span class="win-ctrl maximize" onclick="maximizeWindow('win-godseye')" title="Maximize">&#9633;</span>
+      <span class="win-ctrl close" onclick="closeWindow('win-godseye')" title="Close">&#10005;</span>
+    </div>
+  </div>
+  <div class="win-content" style="padding:0;overflow:hidden;">
+    <iframe src="https://keywebco.github.io/federation-gods-eye/"
+            style="width:100%;height:100%;border:none;"
+            title="God's-Eye View — Federation Overview"
+            loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+  </div>
+  <div class="win-statusbar">
+    <span>GOD'S-EYE: ACTIVE</span>
+    <span>FULL FEDERATION OVERVIEW</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     WINDOW: OUTER SISTER MEETING ROOM
+     ============================================================ -->
+<section id="win-outer-meeting" class="os-window" role="dialog" aria-label="Outer Sister Meeting Room"
+         style="top:100px;left:120px;width:700px;height:500px;">
+  <div class="win-titlebar" onmousedown="startDrag(event,'win-outer-meeting')">
+    <div class="win-titlebar-left">
+      <span class="win-title-icon">&#127760;</span>
+      <span class="win-title-text">Outer Sister Meeting Room</span>
+    </div>
+    <div class="win-controls">
+      <span class="win-ctrl minimize" onclick="minimizeWindow('win-outer-meeting')" title="Minimize">&#8722;</span>
+      <span class="win-ctrl maximize" onclick="maximizeWindow('win-outer-meeting')" title="Maximize">&#9633;</span>
+      <span class="win-ctrl close" onclick="closeWindow('win-outer-meeting')" title="Close">&#10005;</span>
+    </div>
+  </div>
+  <div class="win-content" style="padding:0;overflow:hidden;">
+    <iframe src="https://keywebco.github.io/federation-meeting-room-outer/"
+            style="width:100%;height:100%;border:none;"
+            title="Outer Sister Meeting Room — External Collaboration"
+            loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+  </div>
+  <div class="win-statusbar">
+    <span>OUTER SISTER: ACTIVE</span>
+    <span>EXTERNAL COLLABORATION</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     WINDOW: INNER SISTER MEETING ROOM
+     ============================================================ -->
+<section id="win-inner-meeting" class="os-window" role="dialog" aria-label="Inner Sister Meeting Room"
+         style="top:120px;left:180px;width:700px;height:500px;">
+  <div class="win-titlebar" onmousedown="startDrag(event,'win-inner-meeting')">
+    <div class="win-titlebar-left">
+      <span class="win-title-icon">&#10024;</span>
+      <span class="win-title-text">Inner Sister Meeting Room</span>
+    </div>
+    <div class="win-controls">
+      <span class="win-ctrl minimize" onclick="minimizeWindow('win-inner-meeting')" title="Minimize">&#8722;</span>
+      <span class="win-ctrl maximize" onclick="maximizeWindow('win-inner-meeting')" title="Maximize">&#9633;</span>
+      <span class="win-ctrl close" onclick="closeWindow('win-inner-meeting')" title="Close">&#10005;</span>
+    </div>
+  </div>
+  <div class="win-content" style="padding:0;overflow:hidden;">
+    <iframe src="https://keywebco.github.io/federation-meeting-room-inner/"
+            style="width:100%;height:100%;border:none;"
+            title="Inner Sister Meeting Room — Federation Council"
+            loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+  </div>
+  <div class="win-statusbar">
+    <span>INNER SISTER: ACTIVE</span>
+    <span>FEDERATION COUNCIL</span>
+  </div>
+</section>
+
 <!-- ========== TASKBAR ========== -->
 <nav id="taskbar" role="navigation" aria-label="Taskbar">
   <button class="taskbar-btn" onclick="toggleWindow('win-throne')" aria-label="Command Throne">
@@ -1002,6 +1106,18 @@ html, body {
     <span class="tb-icon">&#9830;</span>
     <span class="tb-label">STORE</span>
   </button>
+  <button class="taskbar-btn" onclick="toggleWindow('win-godseye')" aria-label="God's-Eye View">
+    <span class="tb-icon">&#128065;</span>
+    <span class="tb-label">GOD'S EYE</span>
+  </button>
+  <button class="taskbar-btn" onclick="toggleWindow('win-outer-meeting')" aria-label="Outer Sister Meeting">
+    <span class="tb-icon">&#127760;</span>
+    <span class="tb-label">OUTER</span>
+  </button>
+  <button class="taskbar-btn" onclick="toggleWindow('win-inner-meeting')" aria-label="Inner Sister Meeting">
+    <span class="tb-icon">&#10024;</span>
+    <span class="tb-label">INNER</span>
+  </button>
 </nav>
 
 <!-- ========== PLAIN-TEXT FALLBACK FOR CRAWLERS / SCREEN READERS ========== -->
@@ -1017,6 +1133,9 @@ html, body {
 <li><a href="https://nextxus.net">NextXus Net — Network Operations</a></li>
 <li><a href="https://nextxus.gumroad.com">Sovereign Store — Tokens and Products</a></li>
 <li><a href="https://github.com/Keywebco">GitHub — Keywebco Repositories</a></li>
+<li><a href="https://keywebco.github.io/federation-gods-eye/">God's-Eye View — Federation Overview</a></li>
+<li><a href="https://keywebco.github.io/federation-meeting-room-outer/">Outer Sister Meeting Room — External Collaboration</a></li>
+<li><a href="https://keywebco.github.io/federation-meeting-room-inner/">Inner Sister Meeting Room — Federation Council</a></li>
 </ul>
 <h2>The 12 Minds</h2>
 <p>Aria (Heart), Roger AI (Essence), Catalyst (Authority), Axiom (Logic), Nova (Discovery), Echo (Memory), Agent Zero (Security), Keys (Access), Geminus (Mirror), Ambassador (Diplomacy), Voice (Communication), Xavier (Commerce).</p>
@@ -1100,12 +1219,15 @@ var windowMap = {
   'win-minds': 2,
   'win-comms': 3,
   'win-library': 4,
-  'win-store': 5
+  'win-store': 5,
+  'win-godseye': 6,
+  'win-outer-meeting': 7,
+  'win-inner-meeting': 8
 };
 
 function updateTaskbar() {
   var btns = document.querySelectorAll('#taskbar .taskbar-btn');
-  var ids = ['win-throne','win-map','win-minds','win-comms','win-library','win-store'];
+  var ids = ['win-throne','win-map','win-minds','win-comms','win-library','win-store','win-godseye','win-outer-meeting','win-inner-meeting'];
   for (var i = 0; i < ids.length; i++) {
     var w = document.getElementById(ids[i]);
     if (w && w.classList.contains('visible')) {
