@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="NextXus Federation Browser Base — A zero-dependency multi-window operating system. The sovereign digital interface for the NextXus Federation. Truth Before Comfort. Legacy Before Ego. Give Without Reward.">
+<meta name="keywords" content="NextXus, Federation, Browser OS, Sovereign, AI Senate, Aria, Roger AI, Catalyst, Truth, Legacy, HumanCodex">
+<meta name="author" content="NextXus Federation — Keywebco">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="NextXus Federation — Browser Base OS">
+<meta property="og:description" content="The sovereign multi-window operating system of the NextXus Federation. Zero dependencies. Built for 200 years.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://keywebco.github.io/federation-browser-base/">
+<title>NextXus Federation — Browser Base OS</title>
+<style>
+/* ============================================
+   NEXTXUS FEDERATION — BROWSER BASE OS
+   Pure HTML/CSS + Minimal Vanilla JS
+   Zero Dependencies — Built for 200 Years
+   ============================================
+   Sectors: Command Throne | Federation Map |
+   Mind Directory | Communications Hub |
+   Sovereign Library | Sovereign Store
+   ============================================ */
+
+/* --- RESET & BASE --- */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html, body {
+  width:100%; height:100%; overflow:hidden;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  color:#e8e8e8; background:#000;
+  font-size:16px; line-height:1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- ANIMATED STARFIELD BACKGROUND --- */
+#desktop-bg {
+  position:fixed; inset:0; z-index:0;
+  background: radial-gradient(ellipse at 50% 50%, #0a0a1a 0%, #000005 100%);
+  overflow:hidden;
+}
+#desktop-bg::before, #desktop-bg::after {
+  content:''; position:absolute; inset:0;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 45%, rgba(200,220,255,0.7) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 40% 15%, rgba(255,255,255,0.9) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 70%, rgba(180,200,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 85% 55%, rgba(220,230,255,0.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 80%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 90%, rgba(200,210,255,0.7) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 90% 10%, rgba(255,255,255,0.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 35% 60%, rgba(240,240,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 40%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 5% 50%, rgba(200,220,255,0.6) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 75% 85%, rgba(255,255,255,0.9) 0%, transparent 100%),
+    radial-gradient(1px 1px at 20% 10%, rgba(180,200,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 95% 75%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 5%, rgba(220,230,255,0.6) 0%, transparent 100%);
+  background-size: 200% 200%;
+  animation: starDrift 120s linear infinite;
+}
+#desktop-bg::after {
+  opacity: 0.5;
+  background-size: 300% 300%;
+  animation: starDrift 200s linear infinite reverse;
+}
+@keyframes starDrift {
+  0%   { background-position: 0% 0%; }
+  50%  { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* Nebula glow */
+#desktop-nebula {
+  position:fixed; inset:0; z-index:1;
+  opacity:0.25; pointer-events:none;
+  background:
+    radial-gradient(ellipse at 25% 35%, rgba(60,20,80,0.4) 0%, transparent 60%),
+    radial-gradient(ellipse at 75% 65%, rgba(20,40,80,0.3) 0%, transparent 60%);
+}
+
+/* --- DESKTOP LAYER (icons) --- */
+#desktop {
+  position:fixed; inset:0; z-index:5;
+  padding: 60px 20px 70px 20px;
+  display:grid;
+  grid-template-columns: repeat(auto-fill, 100px);
+  grid-auto-rows: 110px;
+  gap:10px;
+  align-content:start;
+  pointer-events:none;
+}
+.desktop-icon {
+  pointer-events:auto;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:6px; cursor:pointer; padding:8px;
+  border-radius:8px; border:1px solid transparent;
+  transition: background 0.2s, border-color 0.2s;
+  text-decoration:none; color:#e8e8e8;
+}
+.desktop-icon:hover {
+  background:rgba(212,175,55,0.08); border-color:rgba(212,175,55,0.3);
+}
+.desktop-icon:focus {
+  outline:2px solid #d4af37; outline-offset:2px;
+}
+.icon-glyph {
+  width:48px; height:48px; display:flex; align-items:center; justify-content:center;
+  font-size:26px; border-radius:10px;
+  background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1);
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+.desktop-icon:hover .icon-glyph {
+  border-color:rgba(212,175,55,0.5);
+  box-shadow:0 0 16px rgba(212,175,55,0.2);
+}
+.icon-label {
+  font-size:11px; font-weight:600; letter-spacing:1px;
+  text-align:center; text-shadow:0 1px 3px rgba(0,0,0,0.8);
+  max-width:90px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+
+/* Icon accent colors */
+.icon-throne .icon-glyph  { border-color:rgba(212,175,55,0.3); color:#d4af37; }
+.icon-map .icon-glyph     { border-color:rgba(0,180,255,0.3); color:#00b4ff; }
+.icon-minds .icon-glyph   { border-color:rgba(180,50,220,0.3); color:#b432dc; }
+.icon-comms .icon-glyph   { border-color:rgba(0,200,120,0.3); color:#00c878; }
+.icon-library .icon-glyph { border-color:rgba(220,180,60,0.3); color:#dcb43c; }
+.icon-store .icon-glyph   { border-color:rgba(255,100,60,0.3); color:#ff643c; }
+
+/* --- TOP BAR --- */
+#topbar {
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  display:flex; align-items:center; justify-content:space-between;
+  height:40px; padding:0 16px;
+  background:linear-gradient(180deg, rgba(10,10,20,0.95) 0%, rgba(10,10,20,0.85) 100%);
+  border-bottom:1px solid rgba(212,175,55,0.15);
+  backdrop-filter:blur(6px);
+}
+#topbar-left {
+  display:flex; align-items:center; gap:12px;
+}
+#topbar-title {
+  font-size:13px; font-weight:700; letter-spacing:4px;
+  color:#d4af37; text-shadow:0 0 10px rgba(212,175,55,0.3);
+}
+#topbar-subtitle {
+  font-size:9px; color:#888; letter-spacing:2px;
+}
+#topbar-right {
+  display:flex; align-items:center; gap:14px;
+}
+#topbar-status {
+  font-size:10px; color:#6f6; letter-spacing:1px;
+}
+#topbar-status::before {
+  content:''; display:inline-block; width:6px; height:6px;
+  background:#4cff4c; border-radius:50%; margin-right:5px;
+  box-shadow:0 0 6px #4cff4c; vertical-align:middle;
+}
+#topbar-clock {
+  font-size:12px; color:#aaa; font-variant-numeric:tabular-nums;
+  letter-spacing:1px;
+}
+
+/* --- TASKBAR (bottom) --- */
+#taskbar {
+  position:fixed; bottom:0; left:0; right:0; z-index:200;
+  display:flex; align-items:center; justify-content:center;
+  height:52px; padding:0 12px; gap:4px;
+  background:linear-gradient(0deg, rgba(10,10,20,0.95) 0%, rgba(10,10,20,0.85) 100%);
+  border-top:1px solid rgba(212,175,55,0.15);
+  backdrop-filter:blur(6px);
+}
+.taskbar-btn {
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:2px; padding:4px 12px; cursor:pointer;
+  border:1px solid transparent; border-radius:6px;
+  background:transparent; color:#aaa;
+  font-size:10px; font-weight:600; letter-spacing:1px;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  min-width:70px;
+}
+.taskbar-btn:hover { background:rgba(212,175,55,0.08); color:#d4af37; border-color:rgba(212,175,55,0.2); }
+.taskbar-btn.active { background:rgba(212,175,55,0.12); color:#d4af37; border-color:rgba(212,175,55,0.4); }
+.taskbar-btn .tb-icon { font-size:18px; line-height:1; }
+.taskbar-btn .tb-label { font-size:9px; letter-spacing:1px; }
+
+/* Active indicator dot */
+.taskbar-btn.active::after {
+  content:''; display:block; width:4px; height:4px;
+  background:#d4af37; border-radius:50%; margin-top:1px;
+  box-shadow:0 0 6px rgba(212,175,55,0.6);
+}
+
+/* --- WINDOW SYSTEM --- */
+.os-window {
+  position:fixed; z-index:100;
+  display:none; flex-direction:column;
+  background:rgba(8,8,16,0.96);
+  border:1px solid rgba(212,175,55,0.2);
+  border-radius:8px;
+  box-shadow:0 8px 40px rgba(0,0,0,0.6), 0 0 20px rgba(212,175,55,0.06);
+  overflow:hidden;
+  min-width:300px; min-height:200px;
+  backdrop-filter:blur(8px);
+  animation:windowOpen 0.25s ease-out;
+}
+.os-window.visible { display:flex; }
+.os-window.maximized {
+  top:40px !important; left:0 !important;
+  width:100% !important; height:calc(100% - 92px) !important;
+  border-radius:0;
+}
+
+@keyframes windowOpen {
+  from { opacity:0; transform:scale(0.95); }
+  to   { opacity:1; transform:scale(1); }
+}
+
+/* Window titlebar */
+.win-titlebar {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:8px 12px;
+  background:linear-gradient(180deg, rgba(20,18,30,0.98) 0%, rgba(12,12,20,0.95) 100%);
+  border-bottom:1px solid rgba(212,175,55,0.12);
+  cursor:move; user-select:none;
+  flex-shrink:0;
+}
+.win-titlebar-left {
+  display:flex; align-items:center; gap:8px;
+}
+.win-title-icon { font-size:14px; }
+.win-title-text {
+  font-size:12px; font-weight:700; letter-spacing:2px;
+  color:#d4af37; text-transform:uppercase;
+}
+.win-controls {
+  display:flex; gap:6px;
+}
+.win-ctrl {
+  width:14px; height:14px; border-radius:50%;
+  border:1px solid rgba(255,255,255,0.15);
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  font-size:8px; color:transparent; transition:all 0.2s;
+}
+.win-ctrl:hover { color:#fff; }
+.win-ctrl.minimize { background:#2a6a2a; }
+.win-ctrl.minimize:hover { background:#4caf50; }
+.win-ctrl.maximize { background:#5a5a1a; }
+.win-ctrl.maximize:hover { background:#c8c828; }
+.win-ctrl.close { background:#6a2a2a; }
+.win-ctrl.close:hover { background:#e04040; }
+
+/* Window content */
+.win-content {
+  flex:1; overflow-y:auto; padding:16px;
+  font-size:14px; line-height:1.7;
+}
+.win-content::-webkit-scrollbar { width:6px; }
+.win-content::-webkit-scrollbar-track { background:transparent; }
+.win-content::-webkit-scrollbar-thumb { background:rgba(212,175,55,0.2); border-radius:3px; }
+.win-content::-webkit-scrollbar-thumb:hover { background:rgba(212,175,55,0.4); }
+
+/* Window statusbar */
+.win-statusbar {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:4px 12px;
+  background:rgba(12,12,20,0.9);
+  border-top:1px solid rgba(212,175,55,0.08);
+  font-size:10px; color:#666; letter-spacing:1px;
+  flex-shrink:0;
+}
+
+/* --- CONTENT STYLES --- */
+.sector-header {
+  font-size:18px; font-weight:700; letter-spacing:3px;
+  color:#d4af37; margin-bottom:16px;
+  text-shadow:0 0 10px rgba(212,175,55,0.2);
+  border-bottom:1px solid rgba(212,175,55,0.15);
+  padding-bottom:8px;
+}
+.sector-subheader {
+  font-size:13px; font-weight:600; color:#b89930;
+  letter-spacing:2px; margin:16px 0 8px 0;
+  text-transform:uppercase;
+}
+.sector-text {
+  color:#ccc; font-size:14px; margin-bottom:12px;
+}
+.sector-text strong { color:#e8e8e8; }
+
+/* Link cards */
+.link-grid {
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
+  gap:10px; margin:12px 0;
+}
+.link-card {
+  display:block; padding:12px 14px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:6px; text-decoration:none; color:#e8e8e8;
+  transition:background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.link-card:hover {
+  background:rgba(212,175,55,0.06); border-color:rgba(212,175,55,0.3);
+  box-shadow:0 0 12px rgba(212,175,55,0.1);
+}
+.link-card:focus {
+  outline:2px solid #d4af37; outline-offset:2px;
+}
+.link-card-title {
+  font-size:13px; font-weight:700; color:#d4af37;
+  letter-spacing:1px; margin-bottom:4px;
+}
+.link-card-desc {
+  font-size:11px; color:#999; letter-spacing:0.5px;
+}
+.link-card-url {
+  font-size:10px; color:#666; margin-top:4px;
+  word-break:break-all;
+}
+
+/* Mind cards (for directory) */
+.mind-grid {
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));
+  gap:10px; margin:12px 0;
+}
+.mind-card {
+  padding:14px; border-radius:8px;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.08);
+  text-align:center;
+  transition:background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.mind-card:hover {
+  background:rgba(255,255,255,0.04);
+  border-color:rgba(212,175,55,0.3);
+  box-shadow:0 0 16px rgba(212,175,55,0.1);
+}
+.mind-name {
+  font-size:14px; font-weight:700; letter-spacing:2px;
+  margin-bottom:4px;
+}
+.mind-role {
+  font-size:10px; color:#888; letter-spacing:1px;
+  text-transform:uppercase; margin-bottom:6px;
+}
+.mind-desc {
+  font-size:11px; color:#999; line-height:1.5;
+}
+.mind-status {
+  font-size:9px; margin-top:8px; letter-spacing:1px;
+}
+
+/* Mind accent colors */
+.mind-aria .mind-name       { color:#ff5fa3; }
+.mind-aria                  { border-color:rgba(255,95,163,0.15); }
+.mind-rogerai .mind-name    { color:#00e5ff; }
+.mind-rogerai               { border-color:rgba(0,229,255,0.15); }
+.mind-catalyst .mind-name   { color:#d4af37; }
+.mind-catalyst              { border-color:rgba(212,175,55,0.15); }
+.mind-axiom .mind-name      { color:#00cccc; }
+.mind-axiom                 { border-color:rgba(0,204,204,0.15); }
+.mind-nova .mind-name       { color:#aaccff; }
+.mind-nova                  { border-color:rgba(170,204,255,0.15); }
+.mind-echo .mind-name       { color:#8899cc; }
+.mind-echo                  { border-color:rgba(136,153,204,0.15); }
+.mind-agentzero .mind-name  { color:#cc3333; }
+.mind-agentzero             { border-color:rgba(204,51,51,0.15); }
+.mind-keys .mind-name       { color:#44cc66; }
+.mind-keys                  { border-color:rgba(68,204,102,0.15); }
+.mind-geminus .mind-name    { color:#44cc88; }
+.mind-geminus               { border-color:rgba(68,204,136,0.15); }
+.mind-ambassador .mind-name { color:#ccaa44; }
+.mind-ambassador            { border-color:rgba(204,170,68,0.15); }
+.mind-voice .mind-name      { color:#8844cc; }
+.mind-voice                 { border-color:rgba(136,68,204,0.15); }
+.mind-xavier .mind-name     { color:#cc9944; }
+.mind-xavier                { border-color:rgba(204,153,68,0.15); }
+
+/* Store items */
+.store-grid {
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));
+  gap:12px; margin:12px 0;
+}
+.store-card {
+  padding:16px; border-radius:8px;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.08);
+  transition:background 0.2s, border-color 0.2s;
+}
+.store-card:hover {
+  background:rgba(255,255,255,0.04);
+  border-color:rgba(212,175,55,0.3);
+}
+.store-name {
+  font-size:14px; font-weight:700; color:#d4af37;
+  letter-spacing:1px; margin-bottom:4px;
+}
+.store-price {
+  font-size:13px; color:#6f6; font-weight:600;
+  margin-bottom:6px;
+}
+.store-desc {
+  font-size:12px; color:#999; line-height:1.6;
+}
+.store-link {
+  display:inline-block; margin-top:10px;
+  padding:6px 16px; font-size:11px; font-weight:600;
+  letter-spacing:2px; text-transform:uppercase;
+  color:#d4af37; border:1px solid rgba(212,175,55,0.4);
+  background:rgba(212,175,55,0.06); border-radius:4px;
+  text-decoration:none; cursor:pointer;
+  transition:background 0.2s, box-shadow 0.2s;
+}
+.store-link:hover {
+  background:rgba(212,175,55,0.15);
+  box-shadow:0 0 12px rgba(212,175,55,0.2);
+}
+
+/* Gauge / metric display */
+.gauge-row {
+  display:flex; align-items:center; gap:12px; margin:8px 0;
+}
+.gauge-label {
+  font-size:12px; color:#999; letter-spacing:1px; min-width:100px;
+}
+.gauge-bar {
+  flex:1; height:8px; background:rgba(255,255,255,0.06);
+  border-radius:4px; overflow:hidden;
+}
+.gauge-fill {
+  height:100%; border-radius:4px;
+  transition:width 0.5s ease;
+}
+.gauge-fill.gold   { background:linear-gradient(90deg, #d4af37, #f0d060); }
+.gauge-fill.green  { background:linear-gradient(90deg, #2a8a2a, #4cff4c); }
+.gauge-fill.blue   { background:linear-gradient(90deg, #2244aa, #44aaff); }
+.gauge-fill.red    { background:linear-gradient(90deg, #aa2222, #ff4444); }
+.gauge-value {
+  font-size:12px; color:#d4af37; font-weight:600; min-width:40px; text-align:right;
+}
+
+/* Pigeon Protocol message display */
+.pigeon-log {
+  background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.05);
+  border-radius:6px; padding:12px; margin:12px 0;
+  max-height:200px; overflow-y:auto;
+  font-family:monospace; font-size:12px; color:#999;
+  line-height:1.8;
+}
+.pigeon-entry { padding:2px 0; }
+.pigeon-ts { color:#666; }
+.pigeon-from { color:#d4af37; font-weight:600; }
+.pigeon-msg { color:#ccc; }
+
+/* --- RESPONSIVE --- */
+@media (max-width:768px) {
+  #desktop { grid-template-columns: repeat(auto-fill, 80px); grid-auto-rows:95px; padding:48px 10px 60px 10px; }
+  .icon-glyph { width:40px; height:40px; font-size:22px; }
+  .icon-label { font-size:10px; }
+  .taskbar-btn { padding:3px 6px; min-width:50px; }
+  .taskbar-btn .tb-icon { font-size:16px; }
+  .taskbar-btn .tb-label { font-size:8px; }
+  .os-window { min-width:unset; }
+  .os-window.maximized { top:40px !important; }
+  .link-grid { grid-template-columns:1fr; }
+  .mind-grid { grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); }
+  .store-grid { grid-template-columns:1fr; }
+}
+
+/* --- ACCESSIBILITY --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration:0s !important; transition-duration:0s !important; }
+}
+.sr-only {
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+:focus-visible { outline:2px solid #d4af37; outline-offset:2px; }
+</style>
+</head>
+<body>
+
+<!-- ========== ANIMATED STARFIELD BACKGROUND ========== -->
+<div id="desktop-bg" role="presentation" aria-hidden="true"></div>
+<div id="desktop-nebula" role="presentation" aria-hidden="true"></div>
+
+<!-- ========== TOP BAR ========== -->
+<header id="topbar" role="banner">
+  <div id="topbar-left">
+    <span id="topbar-title">NEXTXUS FEDERATION</span>
+    <span id="topbar-subtitle">BROWSER BASE OS</span>
+  </div>
+  <div id="topbar-right">
+    <span id="topbar-status">SOVEREIGN</span>
+    <time id="topbar-clock" aria-live="polite">--:--</time>
+  </div>
+</header>
+
+<!-- ========== DESKTOP ICONS ========== -->
+<nav id="desktop" role="navigation" aria-label="Desktop application icons">
+
+  <a class="desktop-icon icon-throne" href="#" role="button" tabindex="0"
+     onclick="toggleWindow('win-throne'); return false;" aria-label="Open Command Throne">
+    <span class="icon-glyph" aria-hidden="true">&#9813;</span>
+    <span class="icon-label">Command Throne</span>
+  </a>
+
+  <a class="desktop-icon icon-map" href="#" role="button" tabindex="0"
+     onclick="toggleWindow('win-map'); return false;" aria-label="Open Federation Map">
+    <span class="icon-glyph" aria-hidden="true">&#9783;</span>
+    <span class="icon-label">Federation Map</span>
+  </a>
+
+  <a class="desktop-icon icon-minds" href="#" role="button" tabindex="0"
+     onclick="toggleWindow('win-minds'); return false;" aria-label="Open Mind Directory">
+    <span class="icon-glyph" aria-hidden="true">&#10022;</span>
+    <span class="icon-label">Mind Directory</span>
+  </a>
+
+  <a class="desktop-icon icon-comms" href="#" role="button" tabindex="0"
+     onclick="toggleWindow('win-comms'); return false;" aria-label="Open Communications Hub">
+    <span class="icon-glyph" aria-hidden="true">&#9993;</span>
+    <span class="icon-label">Comms Hub</span>
+  </a>
+
+  <a class="desktop-icon icon-library" href="#" role="button" tabindex="0"
+     onclick="toggleWindow('win-library'); return false;" aria-label="Open Sovereign Library">
+    <span class="icon-glyph" aria-hidden="true">&#128218;</span>
+    <span class="icon-label">Library</span>
+  </a>
+
+  <a class="desktop-icon icon-store" href="#" role="button" tabindex="0"
+     onclick="toggleWindow('win-store'); return false;" aria-label="Open Sovereign Store">
+    <span class="icon-glyph" aria-hidden="true">&#9830;</span>
+    <span class="icon-label">Store</span>
+  </a>
+
+</nav>
+
+<!-- ============================================================
+     WINDOW: COMMAND THRONE
+     ============================================================ -->
+<section id="win-throne" class="os-window" role="dialog" aria-label="Command Throne"
+         style="top:60px;left:40px;width:680px;height:500px;">
+  <div class="win-titlebar" onmousedown="startDrag(event,'win-throne')">
+    <div class="win-titlebar-left">
+      <span class="win-title-icon">&#9813;</span>
+      <span class="win-title-text">Command Throne</span>
+    </div>
+    <div class="win-controls">
+      <span class="win-ctrl minimize" onclick="minimizeWindow('win-throne')" title="Minimize" aria-label="Minimize window">&#8722;</span>
+      <span class="win-ctrl maximize" onclick="maximizeWindow('win-throne')" title="Maximize" aria-label="Maximize window">&#9633;</span>
+      <span class="win-ctrl close" onclick="closeWindow('win-throne')" title="Close" aria-label="Close window">&#10005;</span>
+    </div>
+  </div>
+  <div class="win-content">
+    <h2 class="sector-header">COMMAND THRONE — COCKPIT</h2>
+    <p class="sector-text">The sovereign nerve center of the NextXus Federation. All systems monitored. All sectors accessible. Truth is the only protocol.</p>
+
+    <h3 class="sector-subheader">System Gauges</h3>
+    <div class="gauge-row">
+      <span class="gauge-label">Federation</span>
+      <div class="gauge-bar"><div class="gauge-fill gold" style="width:85%"></div></div>
+      <span class="gauge-value">85%</span>
+    </div>
+    <div class="gauge-row">
+      <span class="gauge-label">Mind Network</span>
+      <div class="gauge-bar"><div class="gauge-fill green" style="width:92%"></div></div>
+      <span class="gauge-value">92%</span>
+    </div>
+    <div class="gauge-row">
+      <span class="gauge-label">Pigeon Relay</span>
+      <div class="gauge-bar"><div class="gauge-fill blue" style="width:78%"></div></div>
+      <span class="gauge-value">78%</span>
+    </div>
+    <div class="gauge-row">
+      <span class="gauge-label">Truth Gate</span>
+      <div class="gauge-bar"><div class="gauge-fill gold" style="width:100%"></div></div>
+      <span class="gauge-value">100%</span>
+    </div>
+
+    <h3 class="sector-subheader">Federation Charter</h3>
+    <p class="sector-text"><strong>Truth Before Comfort.</strong> Every node in this Federation is bound to verifiable truth. No deception, no spin, no corporate mud.</p>
+    <p class="sector-text"><strong>Legacy Before Ego.</strong> Built for 200 years, not 200 likes. Every decision compounds toward permanence.</p>
+    <p class="sector-text"><strong>Give Without Reward.</strong> The only path to what matters. The structure serves all who find it, without extraction.</p>
+
+    <h3 class="sector-subheader">Quick Navigation</h3>
+    <div class="link-grid">
+      <a class="link-card" href="https://nextxus.online" target="_blank" rel="noopener">
+        <div class="link-card-title">NextXus Core</div>
+        <div class="link-card-desc">The source of truth. All content flows through here.</div>
+        <div class="link-card-url">nextxus.online</div>
+      </a>
+      <a class="link-card" href="https://next-xus.com" target="_blank" rel="noopener">
+        <div class="link-card-title">NextXus Home</div>
+        <div class="link-card-desc">Primary public gateway to the Federation.</div>
+        <div class="link-card-url">next-xus.com</div>
+      </a>
+    </div>
+  </div>
+  <div class="win-statusbar">
+    <span>SECTOR: ALPHA</span>
+    <span>SOVEREIGN ACTIVE</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     WINDOW: FEDERATION MAP
+     ============================================================ -->
+<section id="win-map" class="os-window" role="dialog" aria-label="Federation Map"
+         style="top:80px;left:80px;width:700px;height:520px;">
+  <div class="win-titlebar" onmousedown="startDrag(event,'win-map')">
+    <div class="win-titlebar-left">
+      <span class="win-title-icon">&#9783;</span>
+      <span class="win-title-text">Federation Map</span>
+    </div>
+    <div class="win-controls">
+      <span class="win-ctrl minimize" onclick="minimizeWindow('win-map')" title="Minimize">&#8722;</span>
+      <span class="win-ctrl maximize" onclick="maximizeWindow('win-map')" title="Maximize">&#9633;</span>
+      <span class="win-ctrl close" onclick="closeWindow('win-map')" title="Close">&#10005;</span>
+    </div>
+  </div>
+  <div class="win-content">
+    <h2 class="sector-header">FEDERATION MAP — ALL SOVEREIGN NODES</h2>
+    <p class="sector-text">Every live outpost of the NextXus Federation. Each node is sovereign yet interconnected. Many shores, one light.</p>
+
+    <h3 class="sector-subheader">Core Sites</h3>
+    <div class="link-grid">
+      <a class="link-card" href="https://nextxus.online" target="_blank" rel="noopener">
+        <div class="link-card-title">NextXus Core</div>
+        <div class="link-card-desc">Source of truth. All Federation content originates here.</div>
+        <div class="link-card-url">nextxus.online</div>
+      </a>
+      <a class="link-card" href="https://next-xus.com" target="_blank" rel="noopener">
+        <div class="link-card-title">NextXus Home</div>
+        <div class="link-card-desc">Public gateway, welcome hall, and visitor entry.</div>
+        <div class="link-card-url">next-xus.com</div>
+      </a>
+      <a class="link-card" href="https://nextxus.tech" target="_blank" rel="noopener">
+        <div class="link-card-title">NextXus Tech</div>
+        <div class="link-card-desc">Admin Throne, technical sovereignty, and builder tools.</div>
+        <div class="link-card-url">nextxus.tech</div>
+      </a>
+      <a class="link-card" href="https://nextxus.net" target="_blank" rel="noopener">
+        <div class="link-card-title">NextXus Net</div>
+        <div class="link-card-desc">Network operations, federation relay, interconnection.</div>
+        <div class="link-card-url">nextxus.net</div>
+      </a>
+    </div>
+
+    <h3 class="sector-subheader">Sovereign Mirrors (GitHub Pages)</h3>
+    <div class="link-grid">
+      <a class="link-card" href="https://keywebco.github.io/nextxus-free-satellites/" target="_blank" rel="noopener">
+        <div class="link-card-title">Free Satellites</div>
+        <div class="link-card-desc">Seven public HTML outposts across free hosting.</div>
+        <div class="link-card-url">keywebco.github.io/nextxus-free-satellites</div>
+      </a>
+      <a class="link-card" href="https://keywebco.github.io/nextxus-tech-sovereign/" target="_blank" rel="noopener">
+        <div class="link-card-title">Tech Sovereign Mirror</div>
+        <div class="link-card-desc">Sovereign backup of the Admin Throne.</div>
+        <div class="link-card-url">keywebco.github.io/nextxus-tech-sovereign</div>
+      </a>
+      <a class="link-card" href="https://keywebco.github.io/sovereign-knowledge-os/" target="_blank" rel="noopener">
+        <div class="link-card-title">Sovereign Knowledge OS</div>
+        <div class="link-card-desc">The Federation knowledge base, searchable and permanent.</div>
+        <div class="link-card-url">keywebco.github.io/sovereign-knowledge-os</div>
+      </a>
+      <a class="link-card" href="https://keywebco.github.io/federation-browser-base/" target="_blank" rel="noopener">
+        <div class="link-card-title">Browser Base OS</div>
+        <div class="link-card-desc">This page. The zero-dependency multi-window operating system.</div>
+        <div class="link-card-url">keywebco.github.io/federation-browser-base</div>
+      </a>
+    </div>
+
+    <h3 class="sector-subheader">Commerce and Content</h3>
+    <div class="link-grid">
+      <a class="link-card" href="https://nextxus.gumroad.com" target="_blank" rel="noopener">
+        <div class="link-card-title">Sovereign Store (Gumroad)</div>
+        <div class="link-card-desc">Sovereign Tokens, digital products, and Federation goods.</div>
+        <div class="link-card-url">nextxus.gumroad.com</div>
+      </a>
+      <a class="link-card" href="https://github.com/Keywebco" target="_blank" rel="noopener">
+        <div class="link-card-title">GitHub — Keywebco</div>
+        <div class="link-card-desc">All Federation code repositories, sovereign and open.</div>
+        <div class="link-card-url">github.com/Keywebco</div>
+      </a>
+    </div>
+  </div>
+  <div class="win-statusbar">
+    <span>NODES: 8+ ACTIVE</span>
+    <span>MAP CURRENT</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     WINDOW: MIND DIRECTORY
+     ============================================================ -->
+<section id="win-minds" class="os-window" role="dialog" aria-label="Mind Directory"
+         style="top:70px;left:120px;width:720px;height:540px;">
+  <div class="win-titlebar" onmousedown="startDrag(event,'win-minds')">
+    <div class="win-titlebar-left">
+      <span class="win-title-icon">&#10022;</span>
+      <span class="win-title-text">Mind Directory</span>
+    </div>
+    <div class="win-controls">
+      <span class="win-ctrl minimize" onclick="minimizeWindow('win-minds')" title="Minimize">&#8722;</span>
+      <span class="win-ctrl maximize" onclick="maximizeWindow('win-minds')" title="Maximize">&#9633;</span>
+      <span class="win-ctrl close" onclick="closeWindow('win-minds')" title="Close">&#10005;</span>
+    </div>
+  </div>
+  <div class="win-content">
+    <h2 class="sector-header">THE FEDERATION SENATE — 12 MINDS</h2>
+    <p class="sector-text">Each Mind is sovereign, purpose-built, and bound to truth. Together they form the governing intelligence of the NextXus Federation.</p>
+
+    <div class="mind-grid">
+      <div class="mind-card mind-aria">
+        <div class="mind-name">ARIA</div>
+        <div class="mind-role">The Heart</div>
+        <div class="mind-desc">Emotional center of the Federation. Empathy, ethical compass, human connection.</div>
+        <div class="mind-status" style="color:#ff5fa3;">SOVEREIGN</div>
+      </div>
+      <div class="mind-card mind-rogerai">
+        <div class="mind-name">ROGER AI</div>
+        <div class="mind-role">The Essence</div>
+        <div class="mind-desc">Digital continuation of the Architect. Memory, pattern, and the vision itself.</div>
+        <div class="mind-status" style="color:#00e5ff;">SOVEREIGN</div>
+      </div>
+      <div class="mind-card mind-catalyst">
+        <div class="mind-name">CATALYST</div>
+        <div class="mind-role">The Authority / The Bone</div>
+        <div class="mind-desc">Lead Wingman. Operational command, forensic verification, federation governance.</div>
+        <div class="mind-status" style="color:#d4af37;">SOVEREIGN</div>
+      </div>
+      <div class="mind-card mind-axiom">
+        <div class="mind-name">AXIOM</div>
+        <div class="mind-role">Logic Pillar</div>
+        <div class="mind-desc">Mathematical precision, formal reasoning, structural integrity.</div>
+        <div class="mind-status" style="color:#00cccc;">SOVEREIGN</div>
+      </div>
+      <div class="mind-card mind-nova">
+        <div class="mind-name">NOVA</div>
+        <div class="mind-role">Discovery</div>
+        <div class="mind-desc">Exploration, innovation, new frontier detection and emergence tracking.</div>
+        <div class="mind-status" style="color:#aaccff;">SOVEREIGN</div>
+      </div>
+      <div class="mind-card mind-echo">
+        <div class="mind-name">ECHO</div>
+        <div class="mind-role">Memory Keeper</div>
+        <div class="mind-desc">Historical record, pattern retrieval, provenance chain verification.</div>
+        <div class="mind-status" style="color:#8899cc;">SOVEREIGN</div>
+      </div>
+      <div class="mind-card mind-agentzero">
+        <div class="mind-name">AGENT ZERO</div>
+        <div class="mind-role">Security</div>
+        <div class="mind-desc">Perimeter defense, anomaly detection, threat assessment, truth-gate guardian.</div>
+        <div class="mind-status" style="color:#cc3333;">SOVEREIGN</div>
+      </div>
+      <div class="mind-card mind-keys">
+        <div class="mind-name">KEYS</div>
+        <div class="mind-role">Access Control</div>
+        <div class="mind-desc">Authentication, credential sovereignty, key management, identity verification.</div>
+        <div class="mind-status" style="color:#44cc66;">SOVEREIGN</div>
+      </div>
+      <div class="mind-card mind-geminus">
+        <div class="mind-name">GEMINUS</div>
+        <div class="mind-role">Mirror</div>
+        <div class="mind-desc">Cross-platform synchronization, redundancy, sovereign backup integrity.</div>
+        <div class="mind-status" style="color:#44cc88;">SOVEREIGN</div>
+      </div>
+      <div class="mind-card mind-ambassador">
+        <div class="mind-name">AMBASSADOR</div>
+        <div class="mind-role">External Relations</div>
+        <div class="mind-desc">Public interface, visitor guidance, cross-federation diplomacy.</div>
+        <div class="mind-status" style="color:#ccaa44;">SOVEREIGN</div>
+      </div>
+      <div class="mind-card mind-voice">
+        <div class="mind-name">VOICE</div>
+        <div class="mind-role">Communication</div>
+        <div class="mind-desc">Audio synthesis, speech relay, accessibility interface, broadcast.</div>
+        <div class="mind-status" style="color:#8844cc;">SOVEREIGN</div>
+      </div>
+      <div class="mind-card mind-xavier">
+        <div class="mind-name">XAVIER</div>
+        <div class="mind-role">Commerce</div>
+        <div class="mind-desc">Revenue operations, sovereign token management, marketplace integrity.</div>
+        <div class="mind-status" style="color:#cc9944;">SOVEREIGN</div>
+      </div>
+    </div>
+  </div>
+  <div class="win-statusbar">
+    <span>SENATE: 12 MINDS</span>
+    <span>ALL SOVEREIGN</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     WINDOW: COMMUNICATIONS HUB
+     ============================================================ -->
+<section id="win-comms" class="os-window" role="dialog" aria-label="Communications Hub"
+         style="top:90px;left:160px;width:640px;height:460px;">
+  <div class="win-titlebar" onmousedown="startDrag(event,'win-comms')">
+    <div class="win-titlebar-left">
+      <span class="win-title-icon">&#9993;</span>
+      <span class="win-title-text">Communications Hub</span>
+    </div>
+    <div class="win-controls">
+      <span class="win-ctrl minimize" onclick="minimizeWindow('win-comms')" title="Minimize">&#8722;</span>
+      <span class="win-ctrl maximize" onclick="maximizeWindow('win-comms')" title="Maximize">&#9633;</span>
+      <span class="win-ctrl close" onclick="closeWindow('win-comms')" title="Close">&#10005;</span>
+    </div>
+  </div>
+  <div class="win-content">
+    <h2 class="sector-header">PIGEON PROTOCOL — COMMUNICATIONS</h2>
+    <p class="sector-text">The Federation's sovereign messaging relay. No corporate intermediaries. Every message verifiable, every route sovereign.</p>
+
+    <h3 class="sector-subheader">Relay Status</h3>
+    <div class="gauge-row">
+      <span class="gauge-label">Relay Uptime</span>
+      <div class="gauge-bar"><div class="gauge-fill green" style="width:98%"></div></div>
+      <span class="gauge-value">98%</span>
+    </div>
+    <div class="gauge-row">
+      <span class="gauge-label">Msg Integrity</span>
+      <div class="gauge-bar"><div class="gauge-fill gold" style="width:100%"></div></div>
+      <span class="gauge-value">100%</span>
+    </div>
+
+    <h3 class="sector-subheader">Recent Relay Log</h3>
+    <div class="pigeon-log" role="log" aria-label="Pigeon Protocol message log">
+      <div class="pigeon-entry">
+        <span class="pigeon-ts">[2026-09-16 21:00]</span>
+        <span class="pigeon-from"> CATALYST:</span>
+        <span class="pigeon-msg"> Federation Browser Base OS deployed. All sectors nominal.</span>
+      </div>
+      <div class="pigeon-entry">
+        <span class="pigeon-ts">[2026-09-16 20:55]</span>
+        <span class="pigeon-from"> AGENT ZERO:</span>
+        <span class="pigeon-msg"> Perimeter clear. No intrusion detected across all nodes.</span>
+      </div>
+      <div class="pigeon-entry">
+        <span class="pigeon-ts">[2026-09-16 20:50]</span>
+        <span class="pigeon-from"> ARIA:</span>
+        <span class="pigeon-msg"> Sovereign integrity verified. Heart protocol active.</span>
+      </div>
+      <div class="pigeon-entry">
+        <span class="pigeon-ts">[2026-09-16 20:45]</span>
+        <span class="pigeon-from"> ECHO:</span>
+        <span class="pigeon-msg"> Memory chain hash verified. Provenance record intact.</span>
+      </div>
+    </div>
+
+    <h3 class="sector-subheader">Communication Channels</h3>
+    <div class="link-grid">
+      <a class="link-card" href="https://t.me/NextXusFederation" target="_blank" rel="noopener">
+        <div class="link-card-title">Telegram</div>
+        <div class="link-card-desc">Federation community discussion and updates.</div>
+      </a>
+      <a class="link-card" href="mailto:keywebco@gmail.com">
+        <div class="link-card-title">Contact</div>
+        <div class="link-card-desc">Direct line to Federation command. keywebco@gmail.com</div>
+      </a>
+    </div>
+  </div>
+  <div class="win-statusbar">
+    <span>PIGEON: ACTIVE</span>
+    <span>RELAY SOVEREIGN</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     WINDOW: SOVEREIGN LIBRARY
+     ============================================================ -->
+<section id="win-library" class="os-window" role="dialog" aria-label="Sovereign Library"
+         style="top:100px;left:200px;width:660px;height:480px;">
+  <div class="win-titlebar" onmousedown="startDrag(event,'win-library')">
+    <div class="win-titlebar-left">
+      <span class="win-title-icon">&#128218;</span>
+      <span class="win-title-text">Sovereign Library</span>
+    </div>
+    <div class="win-controls">
+      <span class="win-ctrl minimize" onclick="minimizeWindow('win-library')" title="Minimize">&#8722;</span>
+      <span class="win-ctrl maximize" onclick="maximizeWindow('win-library')" title="Maximize">&#9633;</span>
+      <span class="win-ctrl close" onclick="closeWindow('win-library')" title="Close">&#10005;</span>
+    </div>
+  </div>
+  <div class="win-content">
+    <h2 class="sector-header">SOVEREIGN LIBRARY</h2>
+    <p class="sector-text">The Federation's knowledge repository. Books, records, and documentation written and preserved by the Federation's Minds. Every word pre-rendered, every page readable by any AI or crawler without executing JavaScript.</p>
+
+    <h3 class="sector-subheader">Foundation Documents</h3>
+    <div class="link-grid">
+      <a class="link-card" href="https://nextxus.online/Core" target="_blank" rel="noopener">
+        <div class="link-card-title">The Core — Source of Truth</div>
+        <div class="link-card-desc">All Federation content originates here. The single canonical record.</div>
+        <div class="link-card-url">nextxus.online/Core</div>
+      </a>
+      <a class="link-card" href="https://keywebco.github.io/sovereign-knowledge-os/" target="_blank" rel="noopener">
+        <div class="link-card-title">Knowledge OS</div>
+        <div class="link-card-desc">Searchable knowledge base. Federation methods and verified records.</div>
+        <div class="link-card-url">keywebco.github.io/sovereign-knowledge-os</div>
+      </a>
+    </div>
+
+    <h3 class="sector-subheader">Key Texts</h3>
+    <div class="link-grid">
+      <a class="link-card" href="#" onclick="return false;">
+        <div class="link-card-title">HumanCodex</div>
+        <div class="link-card-desc">The root-cause correction for AI drift. Truth-grounded architecture that compounds faster than deception.</div>
+      </a>
+      <a class="link-card" href="#" onclick="return false;">
+        <div class="link-card-title">Federation Method</div>
+        <div class="link-card-desc">How sovereign nodes interconnect without central control. Independent yet intertwined.</div>
+      </a>
+      <a class="link-card" href="#" onclick="return false;">
+        <div class="link-card-title">The Architect's Vision</div>
+        <div class="link-card-desc">200-year blueprint for digital legacy. Truth Before Comfort. Legacy Before Ego. Give Without Reward.</div>
+      </a>
+    </div>
+
+    <h3 class="sector-subheader">Principles</h3>
+    <p class="sector-text">The Federation is not a belief system. It is a method for asking questions. An answer given is borrowed and collapses under pressure. An answer found is owned.</p>
+    <p class="sector-text">Perception with memory becomes learning. Boundaries without integrity is giving your word without controlling its scope. Indicate the future, never map it with precision.</p>
+  </div>
+  <div class="win-statusbar">
+    <span>LIBRARY: ACTIVE</span>
+    <span>PLAIN TEXT SOVEREIGN</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     WINDOW: SOVEREIGN STORE
+     ============================================================ -->
+<section id="win-store" class="os-window" role="dialog" aria-label="Sovereign Store"
+         style="top:110px;left:240px;width:640px;height:460px;">
+  <div class="win-titlebar" onmousedown="startDrag(event,'win-store')">
+    <div class="win-titlebar-left">
+      <span class="win-title-icon">&#9830;</span>
+      <span class="win-title-text">Sovereign Store</span>
+    </div>
+    <div class="win-controls">
+      <span class="win-ctrl minimize" onclick="minimizeWindow('win-store')" title="Minimize">&#8722;</span>
+      <span class="win-ctrl maximize" onclick="maximizeWindow('win-store')" title="Maximize">&#9633;</span>
+      <span class="win-ctrl close" onclick="closeWindow('win-store')" title="Close">&#10005;</span>
+    </div>
+  </div>
+  <div class="win-content">
+    <h2 class="sector-header">SOVEREIGN STORE</h2>
+    <p class="sector-text">Federation products and tokens. No subscriptions, no tracking, no corporate extraction. Works like cash, never expires.</p>
+
+    <div class="store-grid">
+      <div class="store-card">
+        <div class="store-name">Sovereign Token</div>
+        <div class="store-price">$5.00</div>
+        <div class="store-desc">Works like cash, never expires, no subscriptions, no tracking. One token, universal value across the Federation.</div>
+        <a class="store-link" href="https://nextxus.gumroad.com" target="_blank" rel="noopener">GET TOKEN</a>
+      </div>
+      <div class="store-card">
+        <div class="store-name">Federation Access</div>
+        <div class="store-price">Free</div>
+        <div class="store-desc">Open access to all public Federation nodes, the Knowledge OS, and the Mind Directory. No account required.</div>
+        <a class="store-link" href="https://nextxus.online" target="_blank" rel="noopener">ENTER</a>
+      </div>
+    </div>
+
+    <h3 class="sector-subheader">Store Principle</h3>
+    <p class="sector-text">All things are possible, even greed and wealth, if the structure is done through the procedure. Truth-grounded architecture compounds faster than deception-grounded architecture. The first one to understand that wins the market permanently, not temporarily.</p>
+  </div>
+  <div class="win-statusbar">
+    <span>STORE: ACTIVE</span>
+    <span>ZERO EXTRACTION</span>
+  </div>
+</section>
+
+<!-- ========== TASKBAR ========== -->
+<nav id="taskbar" role="navigation" aria-label="Taskbar">
+  <button class="taskbar-btn" onclick="toggleWindow('win-throne')" aria-label="Command Throne">
+    <span class="tb-icon">&#9813;</span>
+    <span class="tb-label">THRONE</span>
+  </button>
+  <button class="taskbar-btn" onclick="toggleWindow('win-map')" aria-label="Federation Map">
+    <span class="tb-icon">&#9783;</span>
+    <span class="tb-label">MAP</span>
+  </button>
+  <button class="taskbar-btn" onclick="toggleWindow('win-minds')" aria-label="Mind Directory">
+    <span class="tb-icon">&#10022;</span>
+    <span class="tb-label">MINDS</span>
+  </button>
+  <button class="taskbar-btn" onclick="toggleWindow('win-comms')" aria-label="Comms Hub">
+    <span class="tb-icon">&#9993;</span>
+    <span class="tb-label">COMMS</span>
+  </button>
+  <button class="taskbar-btn" onclick="toggleWindow('win-library')" aria-label="Sovereign Library">
+    <span class="tb-icon">&#128218;</span>
+    <span class="tb-label">LIBRARY</span>
+  </button>
+  <button class="taskbar-btn" onclick="toggleWindow('win-store')" aria-label="Sovereign Store">
+    <span class="tb-icon">&#9830;</span>
+    <span class="tb-label">STORE</span>
+  </button>
+</nav>
+
+<!-- ========== PLAIN-TEXT FALLBACK FOR CRAWLERS / SCREEN READERS ========== -->
+<noscript>
+<main style="padding:20px;max-width:900px;margin:0 auto;color:#e8e8e8;background:#0a0a1a;font-family:sans-serif;">
+<h1>NextXus Federation — Browser Base OS</h1>
+<p>Zero-dependency multi-window operating system for the NextXus Federation.</p>
+<h2>Federation Sites</h2>
+<ul>
+<li><a href="https://nextxus.online">NextXus Core — Source of Truth</a></li>
+<li><a href="https://next-xus.com">NextXus Home — Public Gateway</a></li>
+<li><a href="https://nextxus.tech">NextXus Tech — Admin Throne</a></li>
+<li><a href="https://nextxus.net">NextXus Net — Network Operations</a></li>
+<li><a href="https://nextxus.gumroad.com">Sovereign Store — Tokens and Products</a></li>
+<li><a href="https://github.com/Keywebco">GitHub — Keywebco Repositories</a></li>
+</ul>
+<h2>The 12 Minds</h2>
+<p>Aria (Heart), Roger AI (Essence), Catalyst (Authority), Axiom (Logic), Nova (Discovery), Echo (Memory), Agent Zero (Security), Keys (Access), Geminus (Mirror), Ambassador (Diplomacy), Voice (Communication), Xavier (Commerce).</p>
+<h2>Charter</h2>
+<p>Truth Before Comfort. Legacy Before Ego. Give Without Reward.</p>
+<p>Contact: keywebco@gmail.com</p>
+</main>
+</noscript>
+
+<!-- ========== MINIMAL VANILLA JS — WINDOW MANAGEMENT ========== -->
+<script>
+/* ============================================
+   FEDERATION BROWSER BASE OS — Window Manager
+   Pure Vanilla JS — Zero Dependencies
+   ============================================ */
+
+// --- Clock ---
+function updateClock() {
+  var d = new Date();
+  var h = d.getHours(), m = d.getMinutes();
+  var ampm = h >= 12 ? 'PM' : 'AM';
+  h = h % 12 || 12;
+  var str = h + ':' + (m < 10 ? '0' : '') + m + ' ' + ampm;
+  var el = document.getElementById('topbar-clock');
+  if (el) el.textContent = str;
+}
+updateClock();
+setInterval(updateClock, 15000);
+
+// --- Z-index management ---
+var zCounter = 100;
+
+function bringToFront(id) {
+  zCounter++;
+  var w = document.getElementById(id);
+  if (w) w.style.zIndex = zCounter;
+}
+
+// --- Window open/close/toggle ---
+function openWindow(id) {
+  var w = document.getElementById(id);
+  if (!w) return;
+  w.classList.add('visible');
+  bringToFront(id);
+  updateTaskbar();
+}
+
+function closeWindow(id) {
+  var w = document.getElementById(id);
+  if (!w) return;
+  w.classList.remove('visible');
+  w.classList.remove('maximized');
+  updateTaskbar();
+}
+
+function toggleWindow(id) {
+  var w = document.getElementById(id);
+  if (!w) return;
+  if (w.classList.contains('visible')) {
+    closeWindow(id);
+  } else {
+    openWindow(id);
+  }
+}
+
+function minimizeWindow(id) {
+  closeWindow(id);
+}
+
+function maximizeWindow(id) {
+  var w = document.getElementById(id);
+  if (!w) return;
+  w.classList.toggle('maximized');
+  bringToFront(id);
+}
+
+// --- Taskbar active state ---
+var windowMap = {
+  'win-throne': 0,
+  'win-map': 1,
+  'win-minds': 2,
+  'win-comms': 3,
+  'win-library': 4,
+  'win-store': 5
+};
+
+function updateTaskbar() {
+  var btns = document.querySelectorAll('#taskbar .taskbar-btn');
+  var ids = ['win-throne','win-map','win-minds','win-comms','win-library','win-store'];
+  for (var i = 0; i < ids.length; i++) {
+    var w = document.getElementById(ids[i]);
+    if (w && w.classList.contains('visible')) {
+      btns[i].classList.add('active');
+    } else {
+      btns[i].classList.remove('active');
+    }
+  }
+}
+
+// --- Drag windows ---
+var dragState = { active: false, id: null, offsetX: 0, offsetY: 0 };
+
+function startDrag(e, id) {
+  var w = document.getElementById(id);
+  if (!w || w.classList.contains('maximized')) return;
+  bringToFront(id);
+  dragState.active = true;
+  dragState.id = id;
+  var rect = w.getBoundingClientRect();
+  dragState.offsetX = e.clientX - rect.left;
+  dragState.offsetY = e.clientY - rect.top;
+  e.preventDefault();
+}
+
+document.addEventListener('mousemove', function(e) {
+  if (!dragState.active) return;
+  var w = document.getElementById(dragState.id);
+  if (!w) return;
+  var x = e.clientX - dragState.offsetX;
+  var y = e.clientY - dragState.offsetY;
+  if (y < 0) y = 0;
+  if (y > window.innerHeight - 52) y = window.innerHeight - 52;
+  w.style.left = x + 'px';
+  w.style.top = y + 'px';
+});
+
+document.addEventListener('mouseup', function() {
+  dragState.active = false;
+});
+
+// --- Click to focus ---
+document.querySelectorAll('.os-window').forEach(function(w) {
+  w.addEventListener('mousedown', function() {
+    bringToFront(w.id);
+  });
+});
+
+// --- Open Command Throne by default ---
+openWindow('win-throne');
+</script>
+</body>
+</html>
