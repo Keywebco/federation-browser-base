@@ -530,9 +530,14 @@ html, body {
 }
 .portal-card:hover { border-color:rgba(212,175,55,0.6); box-shadow:0 0 20px rgba(212,175,55,0.15); }
 .portal-card-image {
-  width:200px; min-width:200px; display:flex; align-items:center; justify-content:center;
-  font-size:50px; flex-shrink:0;
+  width:200px; min-width:200px; height:200px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:56px; flex-shrink:0; align-self:center; margin:12px;
+  border-radius:12px; overflow:hidden;
 }
+.portal-card-emoji { font-size:56px; line-height:1; }
+.portal-card-image img { width:100%; height:100%; object-fit:cover; border-radius:10px; }
+.portal-card-image video { width:100%; height:100%; object-fit:cover; border-radius:10px; }
 .portal-card-content { flex:1; padding:24px 28px; display:flex; flex-direction:column; justify-content:space-between; }
 .portal-card-title { font-size:24px; font-weight:800; color:#ffffff; letter-spacing:1px; margin:0 0 6px; }
 .portal-card-tagline { font-size:15px; color:#a89060; margin:0 0 14px; }
@@ -559,8 +564,8 @@ html, body {
 .portal-enter-operator a:hover { opacity:1; }
 @media(max-width:768px){
   .portal-header h1 { font-size:26px; }
-  .portal-card { flex-direction:column; }
-  .portal-card-image { width:100%; min-width:unset; height:160px; font-size:60px; }
+  .portal-card { flex-direction:column; align-items:center; }
+  .portal-card-image { width:180px; min-width:180px; height:180px; margin:16px auto 0; border-radius:12px; }
   .portal-card-content { padding:18px 20px; }
   .portal-card-title { font-size:22px; }
   .portal-card-btn { font-size:16px; padding:16px 0; }
@@ -585,7 +590,7 @@ html, body {
 
     <!-- Card 1 — GOD'S EYE -->
     <div class="portal-card">
-      <div class="portal-card-image" style="background:linear-gradient(135deg, #1a0533 0%, #2d1b69 50%, #0d3b8a 100%);" aria-hidden="true">&#127758;</div>
+      <div class="portal-card-image" style="background:linear-gradient(135deg, #1a0533 0%, #2d1b69 50%, #0d3b8a 100%);" aria-hidden="true"><span class="portal-card-emoji">&#127758;</span></div>
       <div class="portal-card-content">
         <div>
           <div class="portal-card-title">See the World View</div>
@@ -602,7 +607,7 @@ html, body {
 
     <!-- Card 2 — PLANETARIUM -->
     <div class="portal-card">
-      <div class="portal-card-image" style="background:linear-gradient(135deg, #020817 0%, #0c1a3a 50%, #0a0a2e 100%);" aria-hidden="true">&#129680;</div>
+      <div class="portal-card-image" style="background:linear-gradient(135deg, #020817 0%, #0c1a3a 50%, #0a0a2e 100%);" aria-hidden="true"><span class="portal-card-emoji">&#129680;</span></div>
       <div class="portal-card-content">
         <div>
           <div class="portal-card-title">Travel the Universe</div>
@@ -619,7 +624,7 @@ html, body {
 
     <!-- Card 3 — COMMS -->
     <div class="portal-card">
-      <div class="portal-card-image" style="background:linear-gradient(135deg, #003333 0%, #005555 50%, #007a7a 100%);" aria-hidden="true">&#128172;</div>
+      <div class="portal-card-image" style="background:linear-gradient(135deg, #003333 0%, #005555 50%, #007a7a 100%);" aria-hidden="true"><span class="portal-card-emoji">&#128172;</span></div>
       <div class="portal-card-content">
         <div>
           <div class="portal-card-title">Talk to Any AI or Person</div>
@@ -636,7 +641,7 @@ html, body {
 
     <!-- Card 4 — LIBRARY -->
     <div class="portal-card">
-      <div class="portal-card-image" style="background:linear-gradient(135deg, #1a0a00 0%, #4a2800 50%, #7a4a00 100%);" aria-hidden="true">&#128218;</div>
+      <div class="portal-card-image" style="background:linear-gradient(135deg, #1a0a00 0%, #4a2800 50%, #7a4a00 100%);" aria-hidden="true"><span class="portal-card-emoji">&#128218;</span></div>
       <div class="portal-card-content">
         <div>
           <div class="portal-card-title">Explore the Library</div>
@@ -653,7 +658,7 @@ html, body {
 
     <!-- Card 5 — STORE -->
     <div class="portal-card">
-      <div class="portal-card-image" style="background:linear-gradient(135deg, #1a1000 0%, #4a3000 50%, #8a6000 100%);" aria-hidden="true">&#127978;</div>
+      <div class="portal-card-image" style="background:linear-gradient(135deg, #1a1000 0%, #4a3000 50%, #8a6000 100%);" aria-hidden="true"><span class="portal-card-emoji">&#127978;</span></div>
       <div class="portal-card-content">
         <div>
           <div class="portal-card-title">Visit the Store</div>
@@ -670,7 +675,7 @@ html, body {
 
     <!-- Card 6 — MINDS -->
     <div class="portal-card">
-      <div class="portal-card-image" style="background:linear-gradient(135deg, #001a33 0%, #002a55 50%, #1a0040 100%);" aria-hidden="true">&#129504;</div>
+      <div class="portal-card-image" style="background:linear-gradient(135deg, #001a33 0%, #002a55 50%, #1a0040 100%);" aria-hidden="true"><span class="portal-card-emoji">&#129504;</span></div>
       <div class="portal-card-content">
         <div>
           <div class="portal-card-title">Meet the Minds</div>
