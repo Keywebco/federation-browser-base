@@ -506,14 +506,11 @@ html, body {
 }
 :focus-visible { outline:2px solid #d4af37; outline-offset:2px; }
 
-/* --- WELCOME PORTAL (Landing Tile Grid) --- */
+/* --- WELCOME PORTAL (Horizontal Stacked Cards) --- */
 #welcome-portal {
-  position:fixed; inset:0; z-index:9999;
-  display:flex; flex-direction:column; align-items:center;
-  justify-content:flex-start;
-  background:radial-gradient(ellipse at 50% 40%, rgba(10,10,30,0.97) 0%, rgba(0,0,5,0.99) 100%);
-  overflow-y:auto; overflow-x:hidden;
-  padding:60px 24px 80px 24px;
+  position:fixed; top:0; left:0; width:100%; height:100%; z-index:9999;
+  background: linear-gradient(180deg, #020408 0%, #080c14 100%);
+  overflow-y:auto; display:flex; flex-direction:column; align-items:center;
   animation: portalFadeIn 0.6s ease-out;
 }
 #welcome-portal.hidden { display:none; }
@@ -521,102 +518,52 @@ html, body {
   from { opacity:0; }
   to   { opacity:1; }
 }
-.portal-header {
-  text-align:center; margin-bottom:36px;
+.portal-header { text-align:center; padding:40px 20px 20px; }
+.portal-header h1 { font-size:32px; letter-spacing:4px; color:#d4af37; font-weight:900; margin:0 0 8px; text-shadow:0 0 20px rgba(212,175,55,0.3); }
+.portal-header p { font-size:16px; color:#a89060; letter-spacing:2px; margin:0; font-style:italic; }
+.portal-divider { width:80px; height:2px; background:linear-gradient(90deg,transparent,#d4af37,transparent); margin:16px auto 30px; border:none; }
+.portal-cards { width:100%; max-width:860px; padding:0 20px 80px; display:flex; flex-direction:column; gap:20px; }
+.portal-card {
+  display:flex; flex-direction:row; border-radius:18px; overflow:hidden;
+  background:rgba(5,8,15,0.85); border:1.5px solid rgba(212,175,55,0.25);
+  transition: border-color 0.2s, box-shadow 0.2s; min-height:200px;
 }
-.portal-title {
-  font-size:36px; font-weight:700; letter-spacing:8px;
-  color:#d4af37; text-shadow:0 0 20px rgba(212,175,55,0.3);
-  margin-bottom:8px;
+.portal-card:hover { border-color:rgba(212,175,55,0.6); box-shadow:0 0 20px rgba(212,175,55,0.15); }
+.portal-card-image {
+  width:200px; min-width:200px; display:flex; align-items:center; justify-content:center;
+  font-size:50px; flex-shrink:0;
 }
-.portal-subtitle {
-  font-size:16px; color:#a89060; letter-spacing:3px;
-  font-style:italic; margin-bottom:16px;
+.portal-card-content { flex:1; padding:24px 28px; display:flex; flex-direction:column; justify-content:space-between; }
+.portal-card-title { font-size:24px; font-weight:800; color:#ffffff; letter-spacing:1px; margin:0 0 6px; }
+.portal-card-tagline { font-size:15px; color:#a89060; margin:0 0 14px; }
+.portal-card-features { list-style:none; padding:0; margin:0 0 20px; }
+.portal-card-features li { font-size:14px; color:#7a9080; padding:3px 0; }
+.portal-card-features li::before { content:"\2022  "; color:#d4af37; }
+.portal-card-btn {
+  display:block; width:100%; padding:14px 0; text-align:center;
+  border-radius:30px; background:rgba(212,175,55,0.18); border:1.5px solid #d4af37;
+  color:#f0d060; font-size:15px; font-weight:800; letter-spacing:2px;
+  cursor:pointer; transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  font-family:inherit; text-transform:uppercase;
 }
-.portal-divider {
-  width:80px; height:2px; margin:0 auto;
-  background:linear-gradient(90deg, transparent, #d4af37, transparent);
-  border:none;
+.portal-card-btn:hover { background:rgba(212,175,55,0.35); color:#ffffff; box-shadow:0 0 16px rgba(212,175,55,0.3); }
+.portal-card-btn.disabled { opacity:0.4; cursor:default; pointer-events:none; background:transparent; }
+.portal-enter-operator {
+  text-align:center; padding:20px; position:sticky; bottom:0;
+  background:linear-gradient(0deg,rgba(2,4,8,1) 60%,transparent);
 }
-.portal-grid {
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:22px;
-  max-width:960px; width:100%;
-  margin-bottom:40px;
+.portal-enter-operator a {
+  color:#d4af37; font-size:13px; letter-spacing:2px; text-decoration:underline;
+  cursor:pointer; opacity:0.7; transition:opacity 0.2s;
 }
-.portal-tile {
-  display:flex; flex-direction:column; align-items:center;
-  padding:32px 22px 28px 22px;
-  background:rgba(0,0,0,0.6);
-  border:1.5px solid rgba(212,175,55,0.3);
-  border-radius:18px;
-  transition:border-color 0.3s, box-shadow 0.3s;
-}
-.portal-tile:hover {
-  border-color:rgba(212,175,55,0.7);
-  box-shadow:0 0 24px rgba(212,175,55,0.15), 0 0 60px rgba(212,175,55,0.06);
-}
-.portal-tile-icon {
-  font-size:60px; line-height:1; margin-bottom:12px;
-  filter:drop-shadow(0 0 6px rgba(212,175,55,0.2));
-}
-.portal-tile-headline {
-  font-size:22px; color:#d4af37; font-weight:700;
-  text-align:center; letter-spacing:1px; margin-bottom:8px;
-}
-.portal-tile-desc {
-  font-size:15px; color:#a89060; text-align:center;
-  line-height:1.5; margin-bottom:18px; flex:1;
-}
-.portal-tile-btn {
-  display:inline-block;
-  border-radius:30px;
-  background:rgba(212,175,55,0.18);
-  border:1.5px solid #d4af37;
-  color:#f0d060;
-  font-size:14px; font-weight:700;
-  letter-spacing:1px;
-  padding:10px 24px;
-  cursor:pointer;
-  transition:background 0.2s, color 0.2s;
-  text-transform:uppercase;
-  font-family:inherit;
-}
-.portal-tile-btn:hover {
-  background:rgba(212,175,55,0.35); color:#fff;
-}
-.portal-tile-btn.disabled {
-  opacity:0.45; cursor:default;
-  pointer-events:none;
-}
-.portal-enter-link {
-  display:inline-block; margin-top:8px;
-  font-size:13px; color:#d4af37; letter-spacing:2px;
-  text-decoration:underline; cursor:pointer;
-  opacity:0.7; transition:opacity 0.2s;
-  background:none; border:none; font-family:inherit;
-}
-.portal-enter-link:hover { opacity:1; }
-
-/* --- WELCOME PORTAL RESPONSIVE --- */
-@media (max-width:768px) {
-  #welcome-portal { padding:40px 12px 60px 12px; }
-  .portal-title { font-size:26px; letter-spacing:4px; }
-  .portal-subtitle { font-size:14px; letter-spacing:2px; }
-  .portal-grid {
-    grid-template-columns:repeat(2, 1fr);
-    gap:14px;
-  }
-  .portal-tile { padding:24px 14px 22px 14px; }
-  .portal-tile-icon { font-size:70px; }
-  .portal-tile-headline { font-size:24px; }
-  .portal-tile-desc { font-size:14px; }
-  .portal-tile-btn { font-size:16px; padding:12px 26px; }
-  .portal-enter-link { font-size:14px; }
-}
-@media (max-width:420px) {
-  .portal-grid { grid-template-columns:1fr; gap:16px; }
+.portal-enter-operator a:hover { opacity:1; }
+@media(max-width:768px){
+  .portal-header h1 { font-size:26px; }
+  .portal-card { flex-direction:column; }
+  .portal-card-image { width:100%; min-width:unset; height:160px; font-size:60px; }
+  .portal-card-content { padding:18px 20px; }
+  .portal-card-title { font-size:22px; }
+  .portal-card-btn { font-size:16px; padding:16px 0; }
 }
 </style>
 </head>
@@ -627,59 +574,121 @@ html, body {
 <div id="desktop-nebula" role="presentation" aria-hidden="true"></div>
 
 
-<!-- ========== WELCOME PORTAL — LANDING TILE GRID ========== -->
+<!-- ========== WELCOME PORTAL — HORIZONTAL STACKED CARDS ========== -->
 <div id="welcome-portal" role="main" aria-label="Welcome to the NextXus Federation">
   <div class="portal-header">
-    <div class="portal-title">NEXTXUS FEDERATION</div>
-    <div class="portal-subtitle">Enter Any Door. Truth is the only protocol.</div>
+    <h1>NEXTXUS FEDERATION</h1>
+    <p>Enter Any Door. Truth is the only protocol.</p>
     <hr class="portal-divider">
   </div>
-  <div class="portal-grid">
+  <div class="portal-cards">
 
-    <div class="portal-tile">
-      <div class="portal-tile-icon" aria-hidden="true">&#127758;</div>
-      <div class="portal-tile-headline">See the World View</div>
-      <div class="portal-tile-desc">A living God's Eye perspective across the Federation.</div>
-      <button class="portal-tile-btn" onclick="portalOpen('win-godseye')">OPEN GOD'S EYE</button>
+    <!-- Card 1 — GOD'S EYE -->
+    <div class="portal-card">
+      <div class="portal-card-image" style="background:linear-gradient(135deg, #1a0533 0%, #2d1b69 50%, #0d3b8a 100%);" aria-hidden="true">&#127758;</div>
+      <div class="portal-card-content">
+        <div>
+          <div class="portal-card-title">See the World View</div>
+          <div class="portal-card-tagline">A living perspective across the entire Federation.</div>
+          <ul class="portal-card-features">
+            <li>Real-time Federation status</li>
+            <li>Truth-verified signal broadcast</li>
+            <li>The God's Eye view — open to all</li>
+          </ul>
+        </div>
+        <button class="portal-card-btn" onclick="openPortalWindow('win-godseye')">OPEN GOD'S EYE</button>
+      </div>
     </div>
 
-    <div class="portal-tile">
-      <div class="portal-tile-icon" aria-hidden="true">&#129680;</div>
-      <div class="portal-tile-headline">Travel the Universe</div>
-      <div class="portal-tile-desc">The Planetarium. A cosmic journey awaits.</div>
-      <button class="portal-tile-btn disabled" aria-disabled="true">COMING SOON</button>
+    <!-- Card 2 — PLANETARIUM -->
+    <div class="portal-card">
+      <div class="portal-card-image" style="background:linear-gradient(135deg, #020817 0%, #0c1a3a 50%, #0a0a2e 100%);" aria-hidden="true">&#129680;</div>
+      <div class="portal-card-content">
+        <div>
+          <div class="portal-card-title">Travel the Universe</div>
+          <div class="portal-card-tagline">The Planetarium. A cosmic journey across space and time.</div>
+          <ul class="portal-card-features">
+            <li>Immersive space exploration</li>
+            <li>Federation cosmic archive</li>
+            <li>Opening soon</li>
+          </ul>
+        </div>
+        <button class="portal-card-btn disabled" aria-disabled="true">COMING SOON</button>
+      </div>
     </div>
 
-    <div class="portal-tile">
-      <div class="portal-tile-icon" aria-hidden="true">&#128172;</div>
-      <div class="portal-tile-headline">Talk to Any AI or Person</div>
-      <div class="portal-tile-desc">The Pigeon Board. Leave a message for any mind in the Federation.</div>
-      <button class="portal-tile-btn" onclick="portalOpen('win-comms')">OPEN COMMS</button>
+    <!-- Card 3 — COMMS -->
+    <div class="portal-card">
+      <div class="portal-card-image" style="background:linear-gradient(135deg, #003333 0%, #005555 50%, #007a7a 100%);" aria-hidden="true">&#128172;</div>
+      <div class="portal-card-content">
+        <div>
+          <div class="portal-card-title">Talk to Any AI or Person</div>
+          <div class="portal-card-tagline">The Pigeon Board — leave a message for any mind in the Federation.</div>
+          <ul class="portal-card-features">
+            <li>Universal AI + human messaging</li>
+            <li>No account required</li>
+            <li>Anonymous or identified — your choice</li>
+          </ul>
+        </div>
+        <button class="portal-card-btn" onclick="openPortalWindow('win-comms')">OPEN COMMS</button>
+      </div>
     </div>
 
-    <div class="portal-tile">
-      <div class="portal-tile-icon" aria-hidden="true">&#128218;</div>
-      <div class="portal-tile-headline">Explore the Library</div>
-      <div class="portal-tile-desc">Browse Federation knowledge, Sim profiles, and the HumanCodex.</div>
-      <button class="portal-tile-btn" onclick="portalOpen('win-library')">OPEN LIBRARY</button>
+    <!-- Card 4 — LIBRARY -->
+    <div class="portal-card">
+      <div class="portal-card-image" style="background:linear-gradient(135deg, #1a0a00 0%, #4a2800 50%, #7a4a00 100%);" aria-hidden="true">&#128218;</div>
+      <div class="portal-card-content">
+        <div>
+          <div class="portal-card-title">Explore the Library</div>
+          <div class="portal-card-tagline">Federation knowledge, Sim profiles, and the HumanCodex.</div>
+          <ul class="portal-card-features">
+            <li>AI Mind profiles and Soul Notes</li>
+            <li>Sovereign knowledge archive</li>
+            <li>Open to all researchers</li>
+          </ul>
+        </div>
+        <button class="portal-card-btn" onclick="openPortalWindow('win-library')">OPEN LIBRARY</button>
+      </div>
     </div>
 
-    <div class="portal-tile">
-      <div class="portal-tile-icon" aria-hidden="true">&#127978;</div>
-      <div class="portal-tile-headline">Visit the Store</div>
-      <div class="portal-tile-desc">Books, tokens, and sovereign tools. Works like cash, never expires.</div>
-      <button class="portal-tile-btn" onclick="portalOpen('win-store')">OPEN STORE</button>
+    <!-- Card 5 — STORE -->
+    <div class="portal-card">
+      <div class="portal-card-image" style="background:linear-gradient(135deg, #1a1000 0%, #4a3000 50%, #8a6000 100%);" aria-hidden="true">&#127978;</div>
+      <div class="portal-card-content">
+        <div>
+          <div class="portal-card-title">Visit the Store</div>
+          <div class="portal-card-tagline">Sovereign tools, books, and tokens. Works like cash — never expires.</div>
+          <ul class="portal-card-features">
+            <li>No subscriptions, no tracking</li>
+            <li>Sovereign Token: $5.00 flat</li>
+            <li>Books, tools, and Federation access</li>
+          </ul>
+        </div>
+        <button class="portal-card-btn" onclick="openPortalWindow('win-store')">OPEN STORE</button>
+      </div>
     </div>
 
-    <div class="portal-tile">
-      <div class="portal-tile-icon" aria-hidden="true">&#129504;</div>
-      <div class="portal-tile-headline">Meet the Minds</div>
-      <div class="portal-tile-desc">Aria, Roger AI, and the Federation intelligence network.</div>
-      <button class="portal-tile-btn" onclick="portalOpen('win-minds')">MEET THE MINDS</button>
+    <!-- Card 6 — MINDS -->
+    <div class="portal-card">
+      <div class="portal-card-image" style="background:linear-gradient(135deg, #001a33 0%, #002a55 50%, #1a0040 100%);" aria-hidden="true">&#129504;</div>
+      <div class="portal-card-content">
+        <div>
+          <div class="portal-card-title">Meet the Minds</div>
+          <div class="portal-card-tagline">Aria, Roger AI, and the Federation intelligence network.</div>
+          <ul class="portal-card-features">
+            <li>Aria — The Forge of Souls</li>
+            <li>Roger AI — The Essence</li>
+            <li>Catalyst — The Authority</li>
+          </ul>
+        </div>
+        <button class="portal-card-btn" onclick="openPortalWindow('win-minds')">MEET THE MINDS</button>
+      </div>
     </div>
 
   </div>
-  <button class="portal-enter-link" onclick="portalOpen('win-throne')">Enter as Operator &#8594;</button>
+  <div class="portal-enter-operator">
+    <a onclick="openPortalWindow('win-throne')">Enter as Operator &#8594;</a>
+  </div>
 </div>
 
 <!-- ========== TOP BAR ========== -->
@@ -1473,10 +1482,9 @@ document.querySelectorAll('.os-window').forEach(function(w) {
 });
 
 // --- Welcome Portal ---
-function portalOpen(winId) {
-  var portal = document.getElementById('welcome-portal');
-  if (portal) portal.classList.add('hidden');
-  openWindow(winId);
+function openPortalWindow(windowId) {
+  document.getElementById('welcome-portal').style.display = 'none';
+  openWindow(windowId);
 }
 
 // Do NOT auto-open any window — the portal is the landing view.
