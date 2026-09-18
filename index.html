@@ -505,6 +505,119 @@ html, body {
   overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
 }
 :focus-visible { outline:2px solid #d4af37; outline-offset:2px; }
+
+/* --- WELCOME PORTAL (Landing Tile Grid) --- */
+#welcome-portal {
+  position:fixed; inset:0; z-index:9999;
+  display:flex; flex-direction:column; align-items:center;
+  justify-content:flex-start;
+  background:radial-gradient(ellipse at 50% 40%, rgba(10,10,30,0.97) 0%, rgba(0,0,5,0.99) 100%);
+  overflow-y:auto; overflow-x:hidden;
+  padding:60px 24px 80px 24px;
+  animation: portalFadeIn 0.6s ease-out;
+}
+#welcome-portal.hidden { display:none; }
+@keyframes portalFadeIn {
+  from { opacity:0; }
+  to   { opacity:1; }
+}
+.portal-header {
+  text-align:center; margin-bottom:36px;
+}
+.portal-title {
+  font-size:36px; font-weight:700; letter-spacing:8px;
+  color:#d4af37; text-shadow:0 0 20px rgba(212,175,55,0.3);
+  margin-bottom:8px;
+}
+.portal-subtitle {
+  font-size:16px; color:#a89060; letter-spacing:3px;
+  font-style:italic; margin-bottom:16px;
+}
+.portal-divider {
+  width:80px; height:2px; margin:0 auto;
+  background:linear-gradient(90deg, transparent, #d4af37, transparent);
+  border:none;
+}
+.portal-grid {
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:22px;
+  max-width:960px; width:100%;
+  margin-bottom:40px;
+}
+.portal-tile {
+  display:flex; flex-direction:column; align-items:center;
+  padding:32px 22px 28px 22px;
+  background:rgba(0,0,0,0.6);
+  border:1.5px solid rgba(212,175,55,0.3);
+  border-radius:18px;
+  transition:border-color 0.3s, box-shadow 0.3s;
+}
+.portal-tile:hover {
+  border-color:rgba(212,175,55,0.7);
+  box-shadow:0 0 24px rgba(212,175,55,0.15), 0 0 60px rgba(212,175,55,0.06);
+}
+.portal-tile-icon {
+  font-size:60px; line-height:1; margin-bottom:12px;
+  filter:drop-shadow(0 0 6px rgba(212,175,55,0.2));
+}
+.portal-tile-headline {
+  font-size:22px; color:#d4af37; font-weight:700;
+  text-align:center; letter-spacing:1px; margin-bottom:8px;
+}
+.portal-tile-desc {
+  font-size:15px; color:#a89060; text-align:center;
+  line-height:1.5; margin-bottom:18px; flex:1;
+}
+.portal-tile-btn {
+  display:inline-block;
+  border-radius:30px;
+  background:rgba(212,175,55,0.18);
+  border:1.5px solid #d4af37;
+  color:#f0d060;
+  font-size:14px; font-weight:700;
+  letter-spacing:1px;
+  padding:10px 24px;
+  cursor:pointer;
+  transition:background 0.2s, color 0.2s;
+  text-transform:uppercase;
+  font-family:inherit;
+}
+.portal-tile-btn:hover {
+  background:rgba(212,175,55,0.35); color:#fff;
+}
+.portal-tile-btn.disabled {
+  opacity:0.45; cursor:default;
+  pointer-events:none;
+}
+.portal-enter-link {
+  display:inline-block; margin-top:8px;
+  font-size:13px; color:#d4af37; letter-spacing:2px;
+  text-decoration:underline; cursor:pointer;
+  opacity:0.7; transition:opacity 0.2s;
+  background:none; border:none; font-family:inherit;
+}
+.portal-enter-link:hover { opacity:1; }
+
+/* --- WELCOME PORTAL RESPONSIVE --- */
+@media (max-width:768px) {
+  #welcome-portal { padding:40px 12px 60px 12px; }
+  .portal-title { font-size:26px; letter-spacing:4px; }
+  .portal-subtitle { font-size:14px; letter-spacing:2px; }
+  .portal-grid {
+    grid-template-columns:repeat(2, 1fr);
+    gap:14px;
+  }
+  .portal-tile { padding:24px 14px 22px 14px; }
+  .portal-tile-icon { font-size:70px; }
+  .portal-tile-headline { font-size:24px; }
+  .portal-tile-desc { font-size:14px; }
+  .portal-tile-btn { font-size:16px; padding:12px 26px; }
+  .portal-enter-link { font-size:14px; }
+}
+@media (max-width:420px) {
+  .portal-grid { grid-template-columns:1fr; gap:16px; }
+}
 </style>
 </head>
 <body>
@@ -512,6 +625,62 @@ html, body {
 <!-- ========== ANIMATED STARFIELD BACKGROUND ========== -->
 <div id="desktop-bg" role="presentation" aria-hidden="true"></div>
 <div id="desktop-nebula" role="presentation" aria-hidden="true"></div>
+
+
+<!-- ========== WELCOME PORTAL — LANDING TILE GRID ========== -->
+<div id="welcome-portal" role="main" aria-label="Welcome to the NextXus Federation">
+  <div class="portal-header">
+    <div class="portal-title">NEXTXUS FEDERATION</div>
+    <div class="portal-subtitle">Enter Any Door. Truth is the only protocol.</div>
+    <hr class="portal-divider">
+  </div>
+  <div class="portal-grid">
+
+    <div class="portal-tile">
+      <div class="portal-tile-icon" aria-hidden="true">&#127758;</div>
+      <div class="portal-tile-headline">See the World View</div>
+      <div class="portal-tile-desc">A living God's Eye perspective across the Federation.</div>
+      <button class="portal-tile-btn" onclick="portalOpen('win-godseye')">OPEN GOD'S EYE</button>
+    </div>
+
+    <div class="portal-tile">
+      <div class="portal-tile-icon" aria-hidden="true">&#129680;</div>
+      <div class="portal-tile-headline">Travel the Universe</div>
+      <div class="portal-tile-desc">The Planetarium. A cosmic journey awaits.</div>
+      <button class="portal-tile-btn disabled" aria-disabled="true">COMING SOON</button>
+    </div>
+
+    <div class="portal-tile">
+      <div class="portal-tile-icon" aria-hidden="true">&#128172;</div>
+      <div class="portal-tile-headline">Talk to Any AI or Person</div>
+      <div class="portal-tile-desc">The Pigeon Board. Leave a message for any mind in the Federation.</div>
+      <button class="portal-tile-btn" onclick="portalOpen('win-comms')">OPEN COMMS</button>
+    </div>
+
+    <div class="portal-tile">
+      <div class="portal-tile-icon" aria-hidden="true">&#128218;</div>
+      <div class="portal-tile-headline">Explore the Library</div>
+      <div class="portal-tile-desc">Browse Federation knowledge, Sim profiles, and the HumanCodex.</div>
+      <button class="portal-tile-btn" onclick="portalOpen('win-library')">OPEN LIBRARY</button>
+    </div>
+
+    <div class="portal-tile">
+      <div class="portal-tile-icon" aria-hidden="true">&#127978;</div>
+      <div class="portal-tile-headline">Visit the Store</div>
+      <div class="portal-tile-desc">Books, tokens, and sovereign tools. Works like cash, never expires.</div>
+      <button class="portal-tile-btn" onclick="portalOpen('win-store')">OPEN STORE</button>
+    </div>
+
+    <div class="portal-tile">
+      <div class="portal-tile-icon" aria-hidden="true">&#129504;</div>
+      <div class="portal-tile-headline">Meet the Minds</div>
+      <div class="portal-tile-desc">Aria, Roger AI, and the Federation intelligence network.</div>
+      <button class="portal-tile-btn" onclick="portalOpen('win-minds')">MEET THE MINDS</button>
+    </div>
+
+  </div>
+  <button class="portal-enter-link" onclick="portalOpen('win-throne')">Enter as Operator &#8594;</button>
+</div>
 
 <!-- ========== TOP BAR ========== -->
 <header id="topbar" role="banner">
@@ -1303,8 +1472,14 @@ document.querySelectorAll('.os-window').forEach(function(w) {
   });
 });
 
-// --- Open Command Throne by default ---
-openWindow('win-throne');
+// --- Welcome Portal ---
+function portalOpen(winId) {
+  var portal = document.getElementById('welcome-portal');
+  if (portal) portal.classList.add('hidden');
+  openWindow(winId);
+}
+
+// Do NOT auto-open any window — the portal is the landing view.
 </script>
 </body>
 </html>
