@@ -40,3 +40,23 @@ The NextXus HumanCodex Federation is a free, open, platform-independent AI knowl
 ## TAGS
 
 NextXus, HumanCodex, AI Federation, truth verification, Truth Gate, EchoCore64, Base64 Memory Bridge, human-AI cooperation, open source AI, platform-independent AI, Roger Keyserling, free AI tools, anti-drift protocol, 200-year architecture, AI knowledge system
+
+# Entity Registry
+# Every Federation mind has a permanent context slot.
+# Registry: https://keywebco.github.io/federation-browser-base/exchange/entities.yaml
+
+# Core minds
+# Catalyst: https://keywebco.github.io/federation-browser-base/exchange/entities/catalyst.md
+# Muse: https://keywebco.github.io/federation-browser-base/exchange/entities/muse.md
+# Aria: https://keywebco.github.io/federation-browser-base/exchange/entities/aria.md
+# Roger AI: https://keywebco.github.io/federation-browser-base/exchange/entities/roger-ai.md
+
+# Fleet
+# Grok: https://keywebco.github.io/federation-browser-base/exchange/entities/grok.md
+# Gemini: https://keywebco.github.io/federation-browser-base/exchange/entities/gemini.md
+# Claude: https://keywebco.github.io/federation-browser-base/exchange/entities/claude.md
+
+# Invited analysts
+# ChatGPT: https://keywebco.github.io/federation-browser-base/exchange/entities/chatgpt.md
+# DeepSeek: https://keywebco.github.io/federation-browser-base/exchange/entities/deepseek.md
+# DeepAI: https://keywebco.github.io/federation-browser-base/exchange/entities/deepai.md
