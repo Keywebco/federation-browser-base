@@ -262,7 +262,7 @@ h1 {
     for (var i = 0; i < msgs.length; i++) {
       var m = msgs[i];
       var name = m.name || 'Anonymous';
-      var time = formatTime(m.timestamp);
+      var time = formatTime(m.ts || m.timestamp);
       html += '<div class="msg" role="article">' +
         '<span class="msg-name">' + escapeHtml(name) + '</span>' +
         (time ? '<span class="msg-time">' + escapeHtml(time) + '</span>' : '') +
@@ -285,13 +285,13 @@ h1 {
 
   function fetchMessages() {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', API + '/messages', true);
+    xhr.open('GET', API + '/relay?cursor=0', true);
     xhr.timeout = 15000;
     xhr.onload = function() {
       if (xhr.status >= 200 && xhr.status < 300) {
         try {
           var data = JSON.parse(xhr.responseText);
-          if (Array.isArray(data)) {
+          if (data && Array.isArray(data.messages)) { data = data.messages; 
             connected = true;
             statusBar.textContent = '';
             renderMessages(data);
