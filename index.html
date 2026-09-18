@@ -176,23 +176,30 @@ html, body {
 }
 .taskbar-btn {
   display:flex; flex-direction:column; align-items:center; justify-content:center;
-  gap:2px; padding:4px 12px; cursor:pointer;
-  border:1px solid transparent; border-radius:6px;
-  background:transparent; color:#aaa;
-  font-size:10px; font-weight:600; letter-spacing:1px;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
-  min-width:70px;
+  gap:2px; padding:6px 14px; cursor:pointer;
+  border:1.5px solid rgba(212,175,55,0.45);
+  border-radius:30px;
+  background:rgba(212,175,55,0.12); color:#d4af37;
+  font-size:11px; font-weight:700; letter-spacing:1px;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  min-width:64px;
 }
-.taskbar-btn:hover { background:rgba(212,175,55,0.08); color:#d4af37; border-color:rgba(212,175,55,0.2); }
-.taskbar-btn.active { background:rgba(212,175,55,0.12); color:#d4af37; border-color:rgba(212,175,55,0.4); }
+.taskbar-btn:hover {
+  background:rgba(212,175,55,0.22); color:#f0d060;
+  border-color:rgba(212,175,55,0.7);
+  box-shadow: 0 0 10px rgba(212,175,55,0.25);
+}
+.taskbar-btn.active {
+  background:rgba(212,175,55,0.30); color:#f5e070;
+  border-color:#d4af37;
+  box-shadow: 0 0 14px rgba(212,175,55,0.35);
+}
 .taskbar-btn .tb-icon { font-size:18px; line-height:1; }
-.taskbar-btn .tb-label { font-size:9px; letter-spacing:1px; }
-
-/* Active indicator dot */
+.taskbar-btn .tb-label { font-size:10px; letter-spacing:1px; font-weight:700; }
 .taskbar-btn.active::after {
-  content:''; display:block; width:4px; height:4px;
-  background:#d4af37; border-radius:50%; margin-top:1px;
-  box-shadow:0 0 6px rgba(212,175,55,0.6);
+  content:''; display:block; width:5px; height:5px;
+  background:#d4af37; border-radius:50%; margin-top:2px;
+  box-shadow:0 0 6px rgba(212,175,55,0.8);
 }
 
 /* --- WINDOW SYSTEM --- */
@@ -462,14 +469,31 @@ html, body {
   #desktop { grid-template-columns: repeat(auto-fill, 80px); grid-auto-rows:95px; padding:48px 10px 60px 10px; }
   .icon-glyph { width:40px; height:40px; font-size:22px; }
   .icon-label { font-size:10px; }
-  .taskbar-btn { padding:3px 6px; min-width:50px; }
-  .taskbar-btn .tb-icon { font-size:16px; }
-  .taskbar-btn .tb-label { font-size:8px; }
+  #taskbar { gap: 3px; padding: 0 6px; height: 60px; }
+  .taskbar-btn { padding:5px 10px; min-width:52px; border-radius:24px; }
+  .taskbar-btn .tb-icon { font-size:20px; }
+  .taskbar-btn .tb-label { font-size:10px; }
   .os-window { min-width:unset; }
   .os-window.maximized { top:40px !important; }
   .link-grid { grid-template-columns:1fr; }
   .mind-grid { grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); }
   .store-grid { grid-template-columns:1fr; }
+  .win-content { font-size: 20px; line-height: 1.8; padding: 20px; }
+  .sector-header { font-size: 26px; letter-spacing: 2px; }
+  .sector-subheader { font-size: 18px; }
+  .sector-text { font-size: 20px; }
+  .gauge-label { font-size: 18px; min-width: 130px; }
+  .gauge-value { font-size: 18px; }
+  .gauge-bar { height: 12px; }
+  .link-card-title { font-size: 20px; }
+  .link-card-desc { font-size: 16px; }
+  .mind-name { font-size: 20px; }
+  .mind-role { font-size: 15px; }
+  .mind-desc { font-size: 15px; }
+  .store-name { font-size: 22px; }
+  .store-price { font-size: 20px; }
+  .store-desc { font-size: 16px; }
+  .store-link { font-size: 16px; padding: 10px 22px; }
 }
 
 /* --- ACCESSIBILITY --- */
@@ -1179,6 +1203,9 @@ function openWindow(id) {
   var w = document.getElementById(id);
   if (!w) return;
   w.classList.add('visible');
+  if (window.innerWidth <= 768) {
+    w.classList.add('maximized');
+  }
   bringToFront(id);
   updateTaskbar();
 }
