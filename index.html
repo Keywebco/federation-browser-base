@@ -570,6 +570,44 @@ html, body {
   .portal-card-title { font-size:22px; }
   .portal-card-btn { font-size:16px; padding:16px 0; }
 }
+
+/* ---- Truth Verified Portal Window ---- */
+.portal-window {
+  position:fixed; z-index:200;
+  display:none; flex-direction:column;
+  background:rgba(8,8,16,0.97);
+  border:1px solid rgba(212,175,55,0.35);
+  border-radius:8px;
+  box-shadow:0 8px 40px rgba(0,0,0,0.7), 0 0 24px rgba(212,175,55,0.1);
+  min-width:340px; max-width:560px;
+  top:100px; left:50%; transform:translateX(-50%);
+  backdrop-filter:blur(10px);
+  animation:windowOpen 0.25s ease-out;
+}
+.portal-window.visible { display:flex; }
+.portal-window-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 16px;
+  background:rgba(212,175,55,0.08);
+  border-bottom:1px solid rgba(212,175,55,0.2);
+}
+.portal-window-title {
+  font-size:15px; font-weight:700; color:#d4af37; letter-spacing:1px;
+}
+.portal-window-close {
+  background:none; border:1px solid rgba(212,175,55,0.3);
+  color:#a89060; width:24px; height:24px;
+  border-radius:4px; cursor:pointer; font-size:13px;
+  display:flex; align-items:center; justify-content:center;
+}
+.portal-window-close:hover { background:rgba(212,175,55,0.2); color:#fff; }
+.portal-window-body {
+  padding:24px 28px; flex:1;
+}
+.portal-window-body p {
+  font-size:14px; color:#c8c8d8; line-height:1.7; margin:0 0 14px;
+}
+.portal-window-body p:last-child { margin-bottom:0; }
 </style>
 </head>
 <body>
@@ -757,7 +795,7 @@ html, body {
             <li>Available to every mind — human or AI</li>
           </ul>
         </div>
-        <button class="portal-card-btn" onclick="openPortalWindow('godsEyeWindow')">THE TRUTH GATE</button>
+        <button class="portal-card-btn" onclick="openPortalWindow('truthVerifiedWindow')">THE TRUTH GATE</button>
       </div>
     </div>
 
@@ -1358,6 +1396,21 @@ html, body {
   </div>
 </section>
 
+<!-- ============================================================
+     WINDOW: TRUTH VERIFIED
+     ============================================================ -->
+<div id="truthVerifiedWindow" class="portal-window" style="display:none;">
+  <div class="portal-window-header">
+    <span class="portal-window-title">&#9878; Truth Verified</span>
+    <button class="portal-window-close" onclick="closePortalWindow('truthVerifiedWindow')">&#10005;</button>
+  </div>
+  <div class="portal-window-body">
+    <p>The Federation's core verification layer. Every signal authenticated before it becomes action.</p>
+    <p>No decision, publication, or response is authorized without truth confirmation passing through the Gate.</p>
+    <p>Available to every mind &#8212; human or AI &#8212; that enters the Federation.</p>
+  </div>
+</div>
+
 <!-- ========== TASKBAR ========== -->
 <nav id="taskbar" role="navigation" aria-label="Taskbar">
   <button class="taskbar-btn" onclick="toggleWindow('win-throne')" aria-label="Command Throne">
@@ -1564,6 +1617,12 @@ function openPortalWindow(windowId) {
 }
 
 // Do NOT auto-open any window — the portal is the landing view.
+
+function closePortalWindow(windowId) {
+  var w = document.getElementById(windowId);
+  if (!w) return;
+  w.classList.remove('visible');
+}
 </script>
 </body>
 </html>
