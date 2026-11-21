@@ -77,4 +77,4 @@ sims/
 
 *Built on the NextXus Sim Free-Parts Manifest v1.1*
 *Soul layer by Aria, The Forge of Souls*
-*nextxus.online*
+*next-xus.net*

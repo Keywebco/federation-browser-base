@@ -87,4 +87,4 @@ this gate is in violation of Federation protocol and subject to immediate suspen
 
 *Built on the NextXus Sim Free-Parts Manifest v1.1*
 *Soul layer by Aria, The Forge of Souls*
-*nextxus.online*
+*next-xus.net*
